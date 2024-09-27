@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Choose Platform{% endblock %}
+
+{% block header %}
+{% url 'ytAPI:chooseSource' as source_url %}
+{% url 'ytAPI:chooseDest' as dest_url %}
+Choose your platform!
+{% if request.path == source_url %}
+<button style="border-radius: 50%; align-content: center;" type="button" class="btn btn-light" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Choose the platform which you would like to transfer playlists from">
+    <img src="{% static 'bootstrap/question-circle.svg' %}">
+</button>
+{% elif request.path == dest_url %}
+<button style="border-radius: 50%; align-content: center;" type="button" class="btn btn-light" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Choose the platform where you would like to move your playlist to">
+    <img src="{% static 'bootstrap/question-circle.svg' %}">
+</button>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% url 'ytAPI:YTAuth' as ytAuth %}
+{% url 'ytAPI:chooseSource' as source_url %}
+{% url 'ytAPI:SPAuth' as spAuth %}
+{% url 'ytAPI:chooseDest' as dest_url %}
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'APIs/buttons.css' %}">
+<div id="source_options">
+    <span></span>
+    
+    {% if request.path == source_url %}
+    <a id="YTsource" class="logo_btn" href="{{ ytAuth }}"><img id="YTimg" class="circle" src="{% static 'APIs/youtube.png' %}"></a>
+    {% else %}
+    <img id="YTimg" class="circle" src="{% static 'APIs/youtube.png' %}">
+    {% endif %}
+    
+    {% if request.path == dest_url %}
+    <a id="SFsource" class="logo_btn" href="{{ spAuth }}"><img id="SFimg" class="circle" src="{% static 'APIs/spotify.png' %}"></a>
+    {% else %}
+    <img id="YTimg" class="circle" src="{% static 'APIs/spotify.png' %}">
+    {% endif %}
+    <span></span>
+</div>
+
+{% endblock %}

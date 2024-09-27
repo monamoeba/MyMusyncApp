@@ -1,0 +1,18 @@
+
+body {
+    text-align:center;
+    background-color: #212529;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 'sans-serif';
+    align-content: center;
+}
+
+.content-box{
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    border: 2px solid whitesmoke;
+    padding: 50px;
+}

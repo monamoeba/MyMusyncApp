@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Customise Playlist{% endblock %}
+
+{% block header %}
+Customise your new playlist!
+<button style="border-radius: 50%; align-content: center;" type="button" class="btn btn-light" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Customise the name, description and public settings of your destination playlist here!">
+    <img src="{% static 'bootstrap/question-circle.svg' %}">
+</button>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+{% url 'ytAPI:spCreatePlaylist' as sp_url %}
+<form action="{{ sp_url }}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="playTitle" class="form-label">Playlist name (Required)</label>
+        <input maxlength="100" name="play_name" type="text"  class="form-control" id="playTitle" value="{{ fill_name }}" required>
+        <div class="invalid-feedback">
+            Please enter a title for your playlist
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="playDesc" class="form-label">Playlist description (Optional)</label>
+        <textarea maxlength="300" name="play_description" class="form-control" id="playDesc" rows="3"></textarea>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="True" id="flexCheckChecked" name="play_setting">
+        <label class="form-check-label" for="flexCheckChecked">
+          Public playlist (Check this if you would like your new playlist to be public)
+        </label>
+    </div>
+    <button class="btn btn-light btn-outline-secondary" type="submit">Submit</button>
+</form>
+
+{% endblock %}

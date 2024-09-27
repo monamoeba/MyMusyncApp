@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block header %}
+MyMusync
+{% endblock %}
+
+{% block content %}
+
+{% url 'ytAPI:chooseSource' as source_url %}
+
+<!-- insert button css if necessary-->
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script> 
+<link rel="stylesheet" href="{% static 'main/process.css' %}">
+
+<div id="Processes">
+    <div id="start" class="Process">
+        <h1>Transfer your music!</h1>
+        <h2>Click below to start your transfer</h2>
+        <button class="btn btn-light" id="startButton" onclick="location.href = '{{ source_url }}'"><b>START</b></button>
+    </div>
+</div>
+
+{% endblock %}
+

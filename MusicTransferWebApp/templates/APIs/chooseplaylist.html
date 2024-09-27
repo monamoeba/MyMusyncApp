@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Choose Playlist{% endblock %}
+{% block header %}
+Choose your playlist!
+<button style="border-radius: 50%; align-content: center;" type="button" class="btn btn-light" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Select a playlist that you would like to transfer and click 'Submit'!">
+    <img src="{% static 'bootstrap/question-circle.svg' %}">
+</button>
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+<script src="{% static 'bootstrap/js/bootstrap.bundle.js' %}"></script>
+
+<h1><b>Choose a playlist!</b></h1>
+{% url 'ytAPI:ytGetSongs' as songs_url %}
+<form action="{{ songs_url }}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <select class="form-control" id="inputGroupSelect04" aria-label="Select playlist" name="playlist">
+            {% for item in playlist_list %}
+            {% if forloop.counter0 == 0 %}
+            <option value="{{ forloop.counter0 }}" selected>{{ item.name }}</option>
+            {% else %}
+            <option value="{{ forloop.counter0 }}">{{ item.name }}</option>
+            {% endif %}
+            {% endfor %}
+        </select>
+        <button class="btn btn-outline-secondary" type="submit">Submit</button>
+    </div>
+</form>
+<hr>
+<h2>Or enter a link to a playlist!</h2>
+<form action="{{ songs_url }}" method="POST">
+    {% csrf_token %}
+<label for="basic-url" class="form-label">Enter the playlist ID in the space</label>
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon3">https://www.youtube.com/playlist?list=</span>
+  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" name="play_id">
+</div>
+<button class="btn btn-outline-secondary" type="submit">Submit</button>
+</form>
+{% endblock %}

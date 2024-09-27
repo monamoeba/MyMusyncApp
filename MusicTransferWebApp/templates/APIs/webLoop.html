@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Next Steps{% endblock %}
+
+{% block header %}
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+All done!
+<button style="border-radius: 50%; align-content: center;" type="button" class="btn btn-light" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="right" data-bs-content="Please now choose whether you would like to finish your visit, transfer a different playlist between the same platforms or to change your platforms.">
+    <img src="{% static 'bootstrap/question-circle.svg' %}">
+</button>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<div class="col-auto d-flex flex-column">
+{% url 'ytAPI:Finish' as finish_url %}
+<a href="{{ finish_url }}" class="btn btn-outline-light" role="button">Finish</a>
+
+{% url 'ytAPI:ytChoosePlaylist' as play_url %}
+<a href="{{ play_url }}" class="btn btn-outline-light" role="button">Transfer another playlist</a>
+
+{% url 'ytAPI:changePlatforms' as plat_url %}
+<a href="{{ plat_url }}" class="btn btn-outline-light" role="button">Change platforms</a>
+
+</div>
+{% endblock %}

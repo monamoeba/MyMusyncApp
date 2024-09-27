@@ -1,0 +1,18 @@
+
+
+.nav {
+    overflow: hidden;
+}
+
+.nav a {
+    color: rgb(125, 83, 224);
+    text-align: center;
+}
+
+.nav a:hover {
+    color: blue;
+}
+
+.nav a:active {
+    color: violet;
+}

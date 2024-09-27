@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script> 
+    <link rel="stylesheet" type="text/css" href="{% static 'main/base.css' %}">
+</head>
+
+<body style="background-color: #212529; color: #fff;">
+
+    <h1><b>{% block header %}{% endblock %}</b></h1>
+
+    <hr>
+    {% block nav %}{% endblock %}
+    <hr>
+    <div class="content-box">
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    </div>
+    <script>
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+     </script>
+</body>
+</html>
