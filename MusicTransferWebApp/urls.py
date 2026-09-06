@@ -14,14 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path, include
 
 from . import views
-# import views from local directory
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('ytAPI.urls', 'ytAPI'), namespace='ytAPI')),
-    #path('', views.index, name="index"),
     path('about', views.about, name="about"),
-    re_path(r'^celery-progress/', include('celery_progress.urls')),
-] 
+]
