@@ -1,8 +1,5 @@
-from django.conf import settings
-from django.conf.urls.static import static
 from django.urls import path
 
-#from .views import IndexPageView, ChooseSourceView, ytsource, ytsourcecallback
 from .views import *
 urlpatterns = [
     path('', IndexPageView.as_view(), name='index'),
